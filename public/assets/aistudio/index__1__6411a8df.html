@@ -1,0 +1,180 @@
+<!--
+    Scam Alert and Pashto Translator - Frontend
+    =============================================
+    This is the main HTML page that users interact with.
+    It includes:
+    - A textarea to paste suspicious messages
+    - Buttons to analyze or clear the message
+    - Result cards showing scam analysis and Pashto translation
+    - A loading spinner while AI processes the request
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ Scam Alert & Pashto Translator</title>
+
+    <!-- Google Fonts: Noto Nastaliq Urdu for Pashto text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Our custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- HEADER SECTION -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header-title">🛡️ Scam Alert & Pashto Translator</h1>
+            <p class="header-subtitle">Paste a suspicious message to check for scams and get a Pashto translation</p>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================ -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- INPUT SECTION: Where users paste their message -->
+            <section class="input-section">
+                <div class="card">
+                    <h2 class="card-title">📝 Paste Suspicious Message</h2>
+                    <p class="card-description">
+                        Paste any message you received (SMS, email, WhatsApp, etc.) in English, Urdu, or Pashto.
+                        Our AI will analyze it for scam indicators and translate it to Pashto.
+                    </p>
+
+                    <!-- Textarea for message input -->
+                    <div class="textarea-wrapper">
+                        <textarea
+                            id="messageInput"
+                            class="message-textarea"
+                            placeholder="Paste the suspicious message here... (supports English, Urdu, Pashto)"
+                            maxlength="5000"
+                            rows="8"
+                        ></textarea>
+                        <!-- Live character counter -->
+                        <div class="char-counter">
+                            <span id="charCount">0</span> / 5000 characters
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="button-group">
+                        <button id="analyzeBtn" class="btn btn-primary" onclick="analyzeMessage()">
+                            🔍 Check Message
+                        </button>
+                        <button id="clearBtn" class="btn btn-secondary" onclick="clearAll()">
+                            ✖ Clear
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- LOADING SPINNER (hidden by default) -->
+            <!-- ============================================ -->
+            <section id="loadingSection" class="loading-section hidden">
+                <div class="spinner"></div>
+                <p class="loading-text">Analyzing message with AI... This may take a few seconds.</p>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- ERROR MESSAGE (hidden by default) -->
+            <!-- ============================================ -->
+            <section id="errorSection" class="error-section hidden">
+                <div class="card card-error">
+                    <p id="errorMessage" class="error-text"></p>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- RESULTS SECTION (hidden until analysis completes) -->
+            <!-- ============================================ -->
+            <section id="resultsSection" class="results-section hidden">
+
+                <!-- Row 1: Classification + Risk Level -->
+                <div class="results-row">
+                    <!-- Scam Classification Card -->
+                    <div class="card">
+                        <h3 class="card-title">🏷️ Classification</h3>
+                        <div id="classificationBadge" class="badge badge-medium">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Risk Level Card -->
+                    <div class="card">
+                        <h3 class="card-title">⚠️ Risk Level</h3>
+                        <div id="riskBadge" class="badge badge-medium">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Reasons -->
+                <div class="card">
+                    <h3 class="card-title">📋 Reasons</h3>
+                    <ul id="reasonsList" class="reasons-list">
+                        <!-- Filled by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Row 3: Pashto Translation -->
+                <div class="card">
+                    <h3 class="card-title">🌐 Pashto Translation (پښتو ژباړه)</h3>
+                    <div id="pashtoTranslation" class="pashto-text" dir="rtl" lang="ps">
+                        <!-- Filled by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Row 4: Safety Advice in English -->
+                <div class="card">
+                    <h3 class="card-title">🔒 Safety Advice (English)</h3>
+                    <ul id="safetyEnglish" class="advice-list">
+                        <!-- Filled by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Row 5: Safety Advice in Pashto -->
+                <div class="card">
+                    <h3 class="card-title">🔒 د امنیت مشورې (Safety Advice in Pashto)</h3>
+                    <ul id="safetyPashto" class="advice-list pashto-text" dir="rtl" lang="ps">
+                        <!-- Filled by JavaScript -->
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- ============================================ -->
+            <!-- DISCLAIMER (always visible) -->
+            <!-- ============================================ -->
+            <section class="disclaimer-section">
+                <div class="card card-disclaimer">
+                    <p>⚠️ <strong>Disclaimer:</strong> This is an AI-based assessment and may be incorrect. Always exercise your own judgment and consult official sources when in doubt. Do not rely solely on this tool for security decisions.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>🛡️ Scam Alert & Pashto Translator | Built for community safety</p>
+        </div>
+    </footer>
+
+    <!-- Our custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

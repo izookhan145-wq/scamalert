@@ -1,0 +1,8 @@
+# Web framework for the backend server
+Flask==3.0.0
+
+# OpenAI Python library (used to call Qwen via DashScope)
+openai==1.12.0
+
+# Load environment variables from .env file
+python-dotenv==1.0.1

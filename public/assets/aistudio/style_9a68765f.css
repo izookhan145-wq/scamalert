@@ -1,0 +1,476 @@
+/*
+    Scam Alert and Pashto Translator - Stylesheet
+    ================================================
+    Color Theme: Blue + White
+    Design: Modern, clean, fully responsive
+    Supports: RTL text for Pashto (Arabic script)
+*/
+
+/* ============================================
+   CSS VARIABLES (Easy to customize colors)
+   ============================================ */
+:root {
+    --primary-blue: #1a73e8;
+    --primary-blue-dark: #1557b0;
+    --primary-blue-light: #e8f0fe;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e0e0e0;
+    --dark-gray: #5f6368;
+    --text-dark: #202124;
+    --text-medium: #3c4043;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+
+    /* Status colors */
+    --color-red: #d93025;
+    --color-red-bg: #fce8e6;
+    --color-yellow: #f9ab00;
+    --color-yellow-bg: #fef7e0;
+    --color-green: #1e8e3e;
+    --color-green-bg: #e6f4ea;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container for centering content */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-content {
+    flex: 1;
+    padding: 30px 0;
+}
+
+/* ============================================
+   CARDS (Reusable card component)
+   ============================================ */
+.card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-description {
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+/* Error card variant */
+.card-error {
+    border-left: 4px solid var(--color-red);
+    background: var(--color-red-bg);
+}
+
+/* Disclaimer card variant */
+.card-disclaimer {
+    border-left: 4px solid var(--color-yellow);
+    background: var(--color-yellow-bg);
+}
+
+.card-disclaimer p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+/* ============================================
+   TEXTAREA & INPUT
+   ============================================ */
+.textarea-wrapper {
+    position: relative;
+}
+
+.message-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 16px;
+    border: 2px solid var(--medium-gray);
+    border-radius: var(--border-radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: var(--white);
+}
+
+.message-textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.message-textarea::placeholder {
+    color: #9aa0a6;
+}
+
+/* Character counter below textarea */
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+    margin-top: 6px;
+    padding-right: 4px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* Primary button (blue) */
+.btn-primary {
+    background: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-blue-dark);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+}
+
+.btn-primary:disabled {
+    background: #94bff8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Secondary button (outline) */
+.btn-secondary {
+    background: var(--white);
+    color: var(--dark-gray);
+    border: 2px solid var(--medium-gray);
+}
+
+.btn-secondary:hover {
+    background: var(--light-gray);
+    border-color: var(--dark-gray);
+}
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.loading-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--primary-blue-light);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--dark-gray);
+    font-size: 1rem;
+}
+
+/* ============================================
+   ERROR SECTION
+   ============================================ */
+.error-section {
+    margin-bottom: 20px;
+}
+
+.error-text {
+    color: var(--color-red);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
+.results-section {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Two-column row for classification + risk */
+.results-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ============================================
+   BADGES (Classification & Risk Level)
+   ============================================ */
+.badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+/* Red badge for "Likely Scam" / "High" risk */
+.badge-red {
+    background: var(--color-red-bg);
+    color: var(--color-red);
+    border: 2px solid var(--color-red);
+}
+
+/* Yellow badge for "Suspicious" / "Medium" risk */
+.badge-yellow {
+    background: var(--color-yellow-bg);
+    color: #e37400;
+    border: 2px solid var(--color-yellow);
+}
+
+/* Green badge for "No Obvious Scam" / "Low" risk */
+.badge-green {
+    background: var(--color-green-bg);
+    color: var(--color-green);
+    border: 2px solid var(--color-green);
+}
+
+/* ============================================
+   LISTS (Reasons & Advice)
+   ============================================ */
+.reasons-list,
+.advice-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reasons-list li,
+.advice-list li {
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: var(--light-gray);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--primary-blue);
+}
+
+.reasons-list li::before {
+    content: "⚡ ";
+}
+
+.advice-list li::before {
+    content: "✅ ";
+}
+
+/* ============================================
+   PASHTO TEXT (RTL support)
+   ============================================ */
+.pashto-text {
+    font-family: 'Noto Nastaliq Urdu', 'Scheherazade New', 'Traditional Arabic', serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.2rem;
+    line-height: 2.2;
+    color: var(--text-dark);
+    padding: 16px;
+    background: var(--primary-blue-light);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid #c5d9f5;
+}
+
+/* Pashto advice list items */
+.advice-list.pashto-text li {
+    background: var(--primary-blue-light);
+    border-left: none;
+    border-right: 3px solid var(--primary-blue);
+    text-align: right;
+    font-family: 'Noto Nastaliq Urdu', 'Scheherazade New', serif;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+/* ============================================
+   DISCLAIMER SECTION
+   ============================================ */
+.disclaimer-section {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: var(--white);
+    border-top: 1px solid var(--medium-gray);
+    padding: 20px;
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+    .header {
+        padding: 30px 16px;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .results-row {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 1.3rem;
+    }
+
+    .message-textarea {
+        min-height: 140px;
+        font-size: 0.95rem;
+    }
+
+    .badge {
+        font-size: 0.95rem;
+        padding: 8px 14px;
+    }
+
+    .pashto-text {
+        font-size: 1.05rem;
+    }
+}

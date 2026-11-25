@@ -1,0 +1,6 @@
+{
+  "name": "Scam Alert & Pashto Translator",
+  "description": "Analyze suspicious messages for scam indicators and translate them into natural Pashto with bilingual safety advice.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

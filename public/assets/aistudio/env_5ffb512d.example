@@ -1,0 +1,15 @@
+# ============================================
+# ENVIRONMENT VARIABLES - COPY THIS TO .env
+# ============================================
+# Get your API key from: https://dashscope.console.aliyun.com/
+# After signing up, go to API-KEY management and create a new key.
+
+# Your Qwen API key from Alibaba Cloud DashScope
+QWEN_API_KEY=your_api_key_here
+
+# The Qwen model to use (default: qwen-plus)
+# Other options: qwen-turbo, qwen-max
+QWEN_MODEL=qwen-plus
+
+# DashScope API base URL (OpenAI-compatible endpoint)
+QWEN_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
